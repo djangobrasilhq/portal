@@ -1,0 +1,53 @@
+{% extends "base_single_column.html" %}
+
+{% block page_title_banner %}
+  {% with page_title="Perfil do Usuário" %}
+    {% include "includes/page_title_banner.html" %}
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="django-message django-message-{{ message.tags }}" style="display: none;">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% if form.errors %}
+    <div class="django-message django-message-error" style="display: none;">
+        <strong>Erro ao salvar o formulário:</strong>
+        <ul>
+            {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                    <li>{{ field }}: {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+<div class="form-container">
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                    <ul class="errorlist">
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                {% if field.help_text %}
+                    <small class="form-help-text">{{ field.help_text }}</small>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+</div>
+{% endblock %}
