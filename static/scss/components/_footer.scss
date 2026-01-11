@@ -1,0 +1,248 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+// ============================================================================
+// Footer
+// ============================================================================
+
+.site-footer {
+  background: transparent;
+  color: v.$text-on-brand;
+  margin-top: auto;
+  width: 100%;
+
+  > &__container:first-of-type {
+    width: 100% !important;
+    background: #187F58 !important;
+    background-color: #187F58 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    
+    &,
+    &.container {
+      background: #187F58 !important;
+      background-color: #187F58 !important;
+    }
+  }
+
+  &__container:first-of-type {
+    background: #187F58 !important;
+    background-color: #187F58 !important;
+  }
+
+  &__container.container:first-of-type {
+    background: #187F58 !important;
+    background-color: #187F58 !important;
+  }
+
+  &__container:not(:first-of-type) {
+    max-width: v.$container-max;
+    margin: 0 auto;
+    padding: 48px v.$gutter;
+    background: transparent;
+
+    @media (min-width: 1024px) {
+      padding: 48px 60px;
+    }
+  }
+
+  &__bottom-top &__container {
+    max-width: v.$container-max;
+    margin: 0 auto;
+    padding: 24px v.$gutter;
+
+    @media (min-width: 1024px) {
+      padding: 24px 60px;
+    }
+  }
+
+  &__logo {
+    display: inline-block;
+
+    img {
+      height: 35px;
+      width: auto;
+      display: block;
+      opacity: 0.95;
+      transition: opacity 0.2s ease;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &:focus-visible {
+      @include m.focus-ring;
+      border-radius: v.$radius-md;
+      outline-offset: 4px;
+    }
+  }
+
+  &__content {
+    max-width: v.$container-max;
+    margin: 0 auto;
+    padding: 24px v.$gutter;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 40px;
+
+    @media (min-width: 768px) {
+      padding: 36px v.$gutter;
+    }
+
+    @media (min-width: 1024px) {
+      padding: 48px 60px;
+    }
+
+    @include m.mq-max(768px) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+
+    @include m.mq-max(600px) {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      gap: 24px;
+    }
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__title {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: v.$font-weight-bold;
+    color: #ffffff;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    a {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: #ffffff;
+      opacity: 0.9;
+      text-decoration: none;
+      transition: opacity 0.2s ease, color 0.2s ease, text-decoration 0.2s ease;
+
+      &:hover {
+        opacity: 1;
+        color: #ffffff;
+        text-decoration: underline;
+        text-decoration-color: #ffffff;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 2px;
+      }
+
+      &:focus-visible {
+        @include m.focus-ring;
+        border-radius: v.$radius-md;
+        outline-offset: 4px;
+      }
+    }
+  }
+
+  &__bottom-top {
+    width: 100%;
+    background: #0C4B33 !important;
+    background-color: #0C4B33 !important;
+    color: v.$text-on-brand;
+    padding: 24px 0;
+    text-align: left;
+
+    .site-footer__container {
+      width: 100%;
+      max-width: v.$container-max;
+      margin: 0 auto;
+      background: transparent !important;
+      background-color: transparent !important;
+      padding: 24px v.$gutter;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+
+      @media (min-width: 1024px) {
+        padding: 24px 60px;
+      }
+    }
+  }
+
+  &__copyright {
+    font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+    color: #93D7B7;
+    line-height: 1.6;
+  }
+
+  &__heart {
+    color: #ff1744;
+    display: inline-block;
+  }
+
+  &__github-link {
+    color: #93D7B7;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease, opacity 0.2s ease;
+
+    &:hover {
+      color: #B8E5D1;
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      @include m.focus-ring;
+      border-radius: v.$radius-md;
+      outline-offset: 4px;
+    }
+  }
+
+  @include m.mq-max(600px) {
+    &__container {
+      padding: 32px v.$gutter;
+    }
+
+    &__logo img {
+      height: 30px;
+    }
+
+    &__content {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    &__nav {
+      gap: 10px;
+    }
+
+    &__bottom-top {
+      padding: 20px 0;
+
+      .site-footer__container {
+        padding: 20px v.$gutter;
+        gap: 12px;
+      }
+    }
+
+    &__copyright {
+      font-size: 11px;
+    }
+  }
+}

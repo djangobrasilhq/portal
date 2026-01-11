@@ -1,0 +1,34 @@
+// Cores da marca
+$brand: #0C3C26;
+$brand-accent: #44B78B;
+$brand-hover: #44AD66;
+
+// Cores neutras
+$white: #ffffff;
+$text-on-brand: $white;
+
+// Cores dos temas (claro/escuro)
+$bg-light: #ffffff;
+$bg-dark: #1a1a1a;
+$text-light: #1a1a1a;
+$text-dark: #ffffff;
+
+// Layout e espaçamento
+$container-max: 1700px;
+$header-height: 66px;
+$gutter: 16px;
+
+// Bordas arredondadas
+$radius-md: 12px;
+
+// Tipografia
+$font-size-sm: 14px;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Efeitos visuais
+$hover-bg: rgba(255, 255, 255, 0.12);
+$border-soft: rgba(255, 255, 255, 0.20);
+
+// Breakpoints (pontos de quebra para responsividade)
+$bp-nav-collapse: 820px;

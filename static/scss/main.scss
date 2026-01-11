@@ -1,0 +1,47 @@
+@use "abstracts/variables" as v;
+@use "abstracts/mixins";
+@use "components/header";
+@use "components/footer";
+@use "components/layout";
+@use "components/code_of_conduct";
+@use "components/page_title_banner";
+
+// Reset básico
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+a { text-decoration: none; color: inherit; }
+
+// Suporte a temas claro/escuro
+:root {
+  --bg-color: #{v.$bg-light};
+  --text-color: #{v.$text-light};
+}
+
+[data-theme="dark"] {
+  --bg-color: #{v.$bg-dark};
+  --text-color: #{v.$text-dark};
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  min-height: calc(100vh - 66px); // Altura total menos o header
+  background-color: #FFFFFF;
+  transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+[data-theme="dark"] main {
+  background-color: #0E1117;
+}
