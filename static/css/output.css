@@ -51,7 +51,7 @@
 .site-header__nav {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 2px;
 }
 .site-header__nav a {
   display: inline-flex;
