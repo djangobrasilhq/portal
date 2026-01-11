@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>{% block title %}Comunidade Django Brasil{% endblock %}</title>
+
+        <meta name="keywords" content="{% block meta_keywords %}Django, Python, comunidade, backend, web, programação, Brasil{% endblock %}">
+        
+        <meta name="theme-color" content="{% block theme_color %}#0C4B33{% endblock %}">
+        <meta name="color-scheme" content="light dark">
+        <meta name="referrer" content="strict-origin-when-cross-origin">
+
+        <link rel="apple-touch-icon" sizes="57x57" href="{% static 'img/icons/apple-icon-57x57.png' %}">
+        <link rel="apple-touch-icon" sizes="60x60" href="{% static 'img/icons/apple-icon-60x60.png' %}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{% static 'img/icons/apple-icon-72x72.png' %}">
+        <link rel="apple-touch-icon" sizes="76x76" href="{% static 'img/icons/apple-icon-76x76.png' %}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{% static 'img/icons/apple-icon-114x114.png' %}">
+        <link rel="apple-touch-icon" sizes="120x120" href="{% static 'img/icons/apple-icon-120x120.png' %}">
+        <link rel="apple-touch-icon" sizes="144x144" href="{% static 'img/icons/apple-icon-144x144.png' %}">
+        <link rel="apple-touch-icon" sizes="152x152" href="{% static 'img/icons/apple-icon-152x152.png' %}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/icons/apple-icon-180x180.png' %}">
+
+        <link rel="icon" type="image/png" sizes="192x192" href="{% static 'img/icons/android-icon-192x192.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/icons/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="96x96" href="{% static 'img/icons/favicon-96x96.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/icons/favicon-16x16.png' %}">
+
+        <link rel="manifest" href="{% static 'img/icons/manifest.json' %}">
+
+        <link rel="stylesheet" href="{% static 'css/output.css'%}">
+        
+        <meta name="application-name" content="Comunidade Django Brasil">
+        <meta name="apple-mobile-web-app-title" content="Django BR">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+        <meta property="og:locale" content="pt_BR">
+        <meta property="og:site_name" content="Comunidade Django Brasil">
+        <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+        <meta property="og:title" content="{% block og_title %}Comunidade Django Brasil{% endblock %}">
+        <meta property="og:description" content="{% block og_description %}{% block meta_description %}Comunidade de tecnologia focada em Django, Python e desenvolvimento web: artigos, eventos, vagas e networking.{% endblock %}{% endblock %}">
+        <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}">
+        <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'img/og-default.png' %}{% endblock %}">
+        <meta property="og:image:width" content="{% block og_image_width %}1200{% endblock %}">
+        <meta property="og:image:height" content="{% block og_image_height %}630{% endblock %}">
+        <meta property="og:image:alt" content="{% block og_image_alt %}Comunidade Django Brasil{% endblock %}">
+        <meta name="twitter:card" content="{% block twitter_card %}summary_large_image{% endblock %}">
+        <meta name="twitter:title" content="{% block twitter_title %}Comunidade Django Brasil{% endblock %}">
+        <meta name="twitter:description" content="{% block twitter_description %}Comunidade de tecnologia focada em Django, Python e desenvolvimento web: artigos, eventos, vagas e networking.{% endblock %}">
+        <meta name="twitter:image" content="{% block twitter_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'img/og-default.png' %}{% endblock %}">
+        <meta name="twitter:site" content="@seuperfil">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700;800&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+        {% include "includes/header.html" %}
+
+        {% block page_title_banner %}{% endblock %}
+
+    <main id="main-content">
+        {% block main_layout %}
+        <div class="container column-container sidebar-right">
+            <div class="main-content-wrapper">
+                <div class="main-content">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+            <aside class="sidebar">
+                {% block sidebar %}{% endblock %}
+            </aside>
+        </div>
+        {% endblock %}
+    </main>
+
+        {% include "includes/footer.html" %}
+    </body>
+</html>

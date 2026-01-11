@@ -1,0 +1,38 @@
+{% load static %}
+
+<header class="site-header" id="siteHeader">
+  <div class="site-header__bar">
+    <div class="site-header__left">
+      <a class="site-header__brand" href="/">
+        <img src="{% static 'img/logo/logo.svg' %}" alt="Logo">
+      </a>
+
+      <span class="site-header__brand-text">A comunidade Django feita de brasileiros, para brasileiros.</span>
+
+      <nav class="site-header__nav" aria-label="Navegação principal" id="mainNav">
+        <a href="{% url 'home' %}" {% if request.resolver_match.url_name == 'home' %}class="active"{% endif %}>Home</a>
+        <a href="#">Blog</a>
+        <a href="#">Bibliotecas</a>
+        <a href="#">Vagas</a>
+        <a href="#">Eventos</a>
+        <a href="#">Comunidade</a>
+        <a href="{% url 'code_of_conduct' %}" {% if request.resolver_match.url_name == 'code_of_conduct' %}class="active"{% endif %}>Conduta</a>
+        <a href="#">Contribua</a>
+      </nav>
+    </div>
+
+    <div class="site-header__right">
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Toggle theme">
+        {% include "svg_icons/sun.html" %}
+        {% include "svg_icons/moon.html" %}
+      </button>
+
+      <button class="site-header__toggle" type="button" id="menuBtn"
+              aria-expanded="false" aria-controls="mainNav" aria-label="Toggle menu">
+        {% include "svg_icons/hamburger.html" %}
+      </button>
+    </div>
+  </div>
+</header>
+
+<script src="{% static 'js/header.js' %}"></script>
