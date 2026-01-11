@@ -1,0 +1,271 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+// ============================================================================
+// Sistema de Toast Moderno
+// ============================================================================
+
+.toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: none;
+  max-width: 400px;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+}
+
+.toast {
+  background-color: v.$white;
+  border-radius: v.$radius-md;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: auto;
+  position: relative;
+  border-left: 4px solid;
+
+  &--show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &--hide {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  &__content {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: v.$white;
+  }
+
+  &__message {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__title {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &__text {
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: color 0.2s ease;
+    line-height: 1;
+
+    &:hover {
+      color: #333;
+    }
+  }
+
+  &__progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: rgba(0, 0, 0, 0.1);
+    width: 100%;
+    transform-origin: left;
+  }
+
+  // Tipos de toast usando cores da marca
+  &-success {
+    border-left-color: v.$brand-accent;
+    background-color: #e8f5e9;
+
+    .toast__icon {
+      background-color: v.$brand-accent;
+    }
+
+    .toast__title {
+      color: v.$brand;
+    }
+
+    .toast__text {
+      color: v.$brand;
+    }
+
+    .toast__progress {
+      background: v.$brand-accent;
+    }
+  }
+
+  &-error {
+    border-left-color: #dc3545;
+    background-color: #ffebee;
+
+    .toast__icon {
+      background-color: #dc3545;
+    }
+
+    .toast__title {
+      color: #721c24;
+    }
+
+    .toast__text {
+      color: #721c24;
+    }
+
+    .toast__progress {
+      background: #dc3545;
+    }
+  }
+
+  &-warning {
+    border-left-color: #ff9800;
+    background-color: #fff3e0;
+
+    .toast__icon {
+      background-color: #ff9800;
+      color: v.$white;
+    }
+
+    .toast__title {
+      color: #856404;
+    }
+
+    .toast__text {
+      color: #856404;
+    }
+
+    .toast__progress {
+      background: #ff9800;
+    }
+  }
+
+  &-info {
+    border-left-color: v.$brand;
+    background-color: #e0f2e8;
+
+    .toast__icon {
+      background-color: v.$brand;
+    }
+
+    .toast__title {
+      color: v.$brand;
+    }
+
+    .toast__text {
+      color: v.$brand;
+    }
+
+    .toast__progress {
+      background: v.$brand;
+    }
+  }
+
+  // Tema escuro
+  [data-theme="dark"] & {
+    background-color: #2A2F36;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+    &-success {
+      background-color: #1e3a2a;
+      border-left-color: v.$brand-accent;
+
+      .toast__title,
+      .toast__text {
+        color: v.$brand-accent;
+      }
+    }
+
+    &-error {
+      background-color: #3a1f1f;
+      border-left-color: #f44336;
+
+      .toast__title,
+      .toast__text {
+        color: #ef5350;
+      }
+    }
+
+    &-warning {
+      background-color: #3a2f1f;
+      border-left-color: #ff9800;
+
+      .toast__title,
+      .toast__text {
+        color: #ffb74d;
+      }
+    }
+
+    &-info {
+      background-color: #1a2f24;
+      border-left-color: v.$brand-accent;
+
+      .toast__title,
+      .toast__text {
+        color: v.$brand-accent;
+      }
+    }
+
+    .toast__close {
+      color: #999;
+
+      &:hover {
+        color: #C1CAC6;
+      }
+    }
+  }
+}
+
+// Animação da barra de progresso
+@keyframes toast-progress {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}

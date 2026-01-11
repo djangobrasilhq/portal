@@ -39,7 +39,8 @@
 
     .main-content-wrapper {
       @media (min-width: 1024px) {
-        margin: 0 auto;
+        margin: 0;
+        margin-left: 0;
       }
     }
   }
@@ -106,10 +107,11 @@
   @media (min-width: 1024px) {
     max-width: v.$container-max;
     width: auto;
-    margin: 0 auto;
+    margin: 0;
+    margin-left: 0;
     padding-left: 60px;
     padding-right: 60px;
-    justify-self: center;
+    justify-self: start;
   }
 }
 

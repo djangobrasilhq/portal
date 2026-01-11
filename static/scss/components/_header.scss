@@ -89,6 +89,58 @@
         border-radius: v.$radius-md;
         background: v.$hover-bg;
       }
+
+      &.btn,
+      &.btn-primary {
+        background-color: transparent !important;
+        background: transparent !important;
+        color: inherit !important;
+        padding: 8px 10px !important;
+        font-size: v.$font-size-sm !important;
+        text-transform: uppercase !important;
+        transform: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        letter-spacing: normal !important;
+        opacity: 0.95 !important;
+
+        &:hover,
+        &:hover:not(:disabled),
+        &:focus {
+          background-color: transparent !important;
+          background: transparent !important;
+          color: v.$brand-hover !important;
+          transform: none !important;
+          box-shadow: none !important;
+          opacity: 1 !important;
+        }
+
+        &:active,
+        &:active:not(:disabled) {
+          transform: none !important;
+          box-shadow: none !important;
+          background-color: transparent !important;
+          background: transparent !important;
+          color: v.$brand-hover !important;
+        }
+
+        &.active {
+          color: v.$brand-hover !important;
+        }
+
+        [data-theme="dark"] & {
+          background-color: transparent !important;
+          background: transparent !important;
+          color: inherit !important;
+
+          &:hover,
+          &:hover:not(:disabled) {
+            background-color: transparent !important;
+            background: transparent !important;
+            color: v.$brand-hover !important;
+          }
+        }
+      }
     }
   }
 
