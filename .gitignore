@@ -336,3 +336,7 @@ vendors.js
 !.envs/.local/
 scripts/
 scripts/*.pyc
+
+# SQLite database
+db.sqlite3
+*.sqlite3

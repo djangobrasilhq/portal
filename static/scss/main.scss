@@ -5,6 +5,8 @@
 @use "components/layout";
 @use "components/code_of_conduct";
 @use "components/page_title_banner";
+@use "components/forms";
+@use "components/toast";
 
 // Reset básico
 * { box-sizing: border-box; }

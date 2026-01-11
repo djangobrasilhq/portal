@@ -14,8 +14,6 @@ from sentry_sdk.integrations.redis import RedisIntegration
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
@@ -40,13 +38,54 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "social_django",
+    "accounts",
 ]
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#authentication-backends
 AUTHENTICATION_BACKENDS = [
+    "social_core.backends.github.GithubOAuth2",
     "django.contrib.auth.backends.ModelBackend",
 ]
 
+AUTH_USER_MODEL = "accounts.User"
+
+# Configurações do GitHub OAuth
+SOCIAL_AUTH_GITHUB_KEY = os.getenv("GITHUB_CLIENT_ID")
+SOCIAL_AUTH_GITHUB_SECRET = os.getenv("GITHUB_CLIENT_SECRET")
+
+# URL de redirecionamento após login
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = "/"
+SOCIAL_AUTH_LOGIN_ERROR_URL = "/"
+
+# Configurações de sessão para OAuth
+# IMPORTANTE: Use sempre o mesmo host (localhost OU 127.0.0.1) durante todo o processo
+if os.getenv("LOCAL", False) or DEBUG:
+    # Aumenta o tempo de expiração do state em desenvolvimento
+    SOCIAL_AUTH_STATE_TIMEOUT = 600  # 10 minutos
+    # Garante que o state seja armazenado corretamente na sessão
+    SOCIAL_AUTH_FIELDS_STORED_IN_SESSION = ["state"]
+
+# Em desenvolvimento local, configurações para garantir redirect_uri correto
+if os.getenv("LOCAL", False) or DEBUG:
+    # Garante que o Django use localhost para construir URLs absolutas em desenvolvimento
+    USE_X_FORWARDED_HOST = False
+    USE_X_FORWARDED_PORT = False
+    # Força o uso de HTTP (não HTTPS) em desenvolvimento
+    SOCIAL_AUTH_REDIRECT_IS_HTTPS = False
+
+# Pipeline de autenticação (cria usuário automaticamente se não existir)
+SOCIAL_AUTH_PIPELINE = (
+    "social_core.pipeline.social_auth.social_details",
+    "social_core.pipeline.social_auth.social_uid",
+    "social_core.pipeline.social_auth.auth_allowed",
+    "social_core.pipeline.social_auth.social_user",
+    "social_core.pipeline.user.get_username",
+    "social_core.pipeline.user.create_user",
+    "social_core.pipeline.social_auth.associate_user",
+    "social_core.pipeline.social_auth.load_extra_data",
+    "social_core.pipeline.user.user_details",
+)
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#password-hashers
 PASSWORD_HASHERS = [
@@ -77,6 +116,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
 
 ROOT_URLCONF = "config.urls"
 
@@ -109,7 +149,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": str(BASE_DIR / "db.sqlite3"),
     }
 }
 
