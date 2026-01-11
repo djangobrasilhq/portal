@@ -1,0 +1,61 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+// ============================================================================
+// Banner de Título da Página
+// ============================================================================
+
+.page-title-banner {
+  width: 100%;
+  background-color: #187F58;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  &__container {
+    max-width: v.$container-max;
+    margin: 0 auto;
+    padding: 0 v.$gutter;
+
+    @media (min-width: 1024px) {
+      padding: 0 60px;
+    }
+  }
+
+  &__title {
+    font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
+    font-size: 20px;
+    font-size: 2rem;
+    color: #C9F0DD;
+    font-weight: 300;
+    line-height: 1.3;
+    padding: 1px 0 4px;
+    margin: 0.25em 0 0.25em;
+    letter-spacing: -1px;
+  }
+
+  [data-theme="dark"] & {
+    &__title {
+      color: #C9F0DD;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    &__title {
+      font-size: 28px;
+      font-size: 2.8rem;
+      margin: 0.25em 0 0.25em;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &__title {
+      color: #C9F0DD;
+    }
+  }
+
+  @media screen and (prefers-color-scheme: dark) and (min-width: 768px) {
+    &__title {
+      color: #C9F0DD;
+    }
+  }
+}

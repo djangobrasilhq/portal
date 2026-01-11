@@ -1,0 +1,76 @@
+{% load static %}
+
+<footer class="site-footer">
+  <div class="site-footer__container">
+    <div class="site-footer__content">
+      <div class="site-footer__section">
+        <h3 class="site-footer__title">Django Brasil</h3>
+        <nav class="site-footer__nav" aria-label="Links do footer">
+          <a href="/">Home</a>
+          <a href="#">Documentação</a>
+          <a href="#">Blog</a>
+          <a href="#">Comunidade</a>
+          <a href="#">Contribua</a>
+        </nav>
+      </div>
+
+      <div class="site-footer__section">
+        <h3 class="site-footer__title">Recursos</h3>
+        <nav class="site-footer__nav" aria-label="Recursos">
+          <a href="#">Tutoriais</a>
+          <a href="#">Artigos</a>
+          <a href="#">Vídeos</a>
+          <a href="#">Podcasts</a>
+          <a href="#">Newsletter</a>
+        </nav>
+      </div>
+
+      <div class="site-footer__section">
+        <h3 class="site-footer__title">Comunidade</h3>
+        <nav class="site-footer__nav" aria-label="Comunidade">
+          <a href="#">Eventos</a>
+          <a href="#">Meetups</a>
+          <a href="#">Grupos Locais</a>
+          <a href="#">WhatsApp</a>
+          <a href="#">Discord</a>
+        </nav>
+      </div>
+
+      <div class="site-footer__section">
+        <h3 class="site-footer__title">Links Úteis</h3>
+        <nav class="site-footer__nav" aria-label="Links úteis">
+          <a href="#">Vagas</a>
+          <a href="#">FAQ</a>
+          <a href="{% url 'code_of_conduct' %}">Código de Conduta</a>
+          <a href="#">Contribuir</a>
+          <a href="https://www.djangoproject.com/" target="_blank" rel="noopener noreferrer">Django Oficial</a>
+        </nav>
+      </div>
+
+      <div class="site-footer__section">
+        <h3 class="site-footer__title">Sobre</h3>
+        <nav class="site-footer__nav" aria-label="Sobre">
+          <a href="#">Quem Somos</a>
+          <a href="#">Missão</a>
+          <a href="#">Contato</a>
+          <a href="#">Privacidade</a>
+          <a href="#">Termos de Uso</a>
+        </nav>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="site-footer__bottom-top">
+    <div class="site-footer__container">
+      <a class="site-footer__logo" href="/">
+        <img src="{% static 'img/logo/logo.svg' %}" alt="Django Brasil">
+      </a>
+      <p class="site-footer__copyright">
+        © 2025-{% now "Y" %} Django Brasil. Desenvolvido com Django e <span class="site-footer__heart">♥</span> pela comunidade brasileira ·
+        <a href="https://github.com/djangobrasilhq/portal" target="_blank" rel="noopener noreferrer" class="site-footer__github-link">Ajude a melhorar</a>
+      </p>
+    </div>
+  </div>
+</footer>
+

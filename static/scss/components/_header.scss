@@ -1,0 +1,267 @@
+@use "../abstracts/variables" as v;
+@use "../abstracts/mixins" as m;
+
+// ============================================================================
+// Header
+// ============================================================================
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+
+  background: v.$brand;
+  color: v.$text-on-brand;
+
+  &__bar {
+    max-width: v.$container-max;
+    margin: 0 auto;
+    padding: 0 v.$gutter;
+
+    @media (min-width: 1024px) {
+      padding: 0 60px;
+    }
+
+    min-height: v.$header-height;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: v.$gutter;
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex: 1;
+  }
+
+  &__brand {
+    display: inline-flex;
+    align-items: center;
+
+    color: inherit;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+
+    img {
+      width: 100px;
+      display: block;
+    }
+  }
+
+  &__brand-text {
+    font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: v.$brand-accent;
+    max-width: 200px;
+    line-height: 1.4;
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+
+      padding: 8px 10px;
+      border-radius: v.$radius-md;
+
+      font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
+      font-size: v.$font-size-sm;
+      font-weight: v.$font-weight-semibold;
+      text-transform: uppercase;
+
+      opacity: 0.95;
+
+      &:hover,
+      &.active {
+        color: v.$brand-hover;
+      }
+
+      &:focus-visible {
+        outline: 2px solid v.$brand-accent;
+        outline-offset: 2px;
+        border-radius: v.$radius-md;
+        background: v.$hover-bg;
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__toggle {
+    display: none;
+
+    border: none;
+    background: transparent;
+    color: inherit;
+
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border-radius: v.$radius-md;
+
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: v.$hover-bg;
+    }
+
+    &:focus-visible {
+      @include m.focus-ring;
+      border-radius: v.$radius-md;
+      outline-offset: 2px;
+    }
+
+    .hamburger-icon {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+  }
+
+  @include m.mq-max(v.$bp-nav-collapse) {
+    &__left {
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    &__brand {
+      flex-shrink: 0;
+    }
+
+    &__brand-text {
+      flex: 1;
+      min-width: 0;
+      max-width: none;
+    }
+
+    &__toggle {
+      display: inline-flex !important;
+    }
+
+    &__nav {
+      display: none;
+
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: v.$header-height;
+
+      background: v.$brand;
+      border-top: 1px solid v.$border-soft;
+
+      padding: 10px v.$gutter;
+
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+
+      a {
+        padding: 12px 12px;
+      }
+    }
+
+    &.is-open {
+      .site-header__nav {
+        display: flex;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// Botão de Alternância de Tema
+// ============================================================================
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background: v.$hover-bg;
+  }
+
+  &:focus-visible {
+    @include m.focus-ring;
+    border-radius: 6px;
+    outline-offset: 2px;
+  }
+
+  &__icon {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    display: block;
+    color: currentColor;
+
+    &--sun {
+      opacity: 1;
+      transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    }
+
+    &--moon {
+      opacity: 0;
+      transform: translate(-50%, -50%) rotate(-90deg) scale(0);
+    }
+  }
+
+  [data-theme="dark"] & {
+    .theme-toggle__icon {
+      &--sun {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(90deg) scale(0);
+      }
+
+      &--moon {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+      }
+    }
+  }
+
+  [data-theme="light"] & {
+    .theme-toggle__icon {
+      &--sun {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+      }
+
+      &--moon {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(-90deg) scale(0);
+      }
+    }
+  }
+}

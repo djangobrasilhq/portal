@@ -1,0 +1,19 @@
+@use "variables" as v;
+
+// Mixin para container centralizado com largura máxima
+@mixin container {
+  max-width: v.$container-max;
+  margin: 0 auto;
+  padding: 0 v.$gutter;
+}
+
+// Mixin para anel de foco (acessibilidade)
+@mixin focus-ring {
+  outline: 2px solid rgba(255, 255, 255, 0.55);
+  outline-offset: 2px;
+}
+
+// Mixin para media query (telas menores que X pixels)
+@mixin mq-max($px) {
+  @media (max-width: $px) { @content; }
+}
