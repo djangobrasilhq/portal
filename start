@@ -11,6 +11,7 @@ if ! python -c "import django" 2>/dev/null; then
   poetry install --no-root --no-interaction
 fi
 
+python manage.py makemigrations
 python manage.py migrate --noinput
 mkdir -p staticfiles
 python manage.py collectstatic --noinput
